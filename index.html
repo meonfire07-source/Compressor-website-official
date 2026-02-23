@@ -1,3 +1,24 @@
+// --- SMART BACKEND MANAGER ---
+let BACKEND_URL = localStorage.getItem('backend_url') || '';
+
+// Agar link nahi hai, toh mangne ka system
+if (!BACKEND_URL) {
+    updateBackendLink();
+}
+
+function updateBackendLink() {
+    const newLink = prompt("Bhai, naya Cloudflare link dalo (Full URL):", BACKEND_URL);
+    if (newLink) {
+        // Link ko clean karna (taaki end me '/' na rahe)
+        BACKEND_URL = newLink.replace(/\/$/, "");
+        localStorage.setItem('backend_url', BACKEND_URL);
+        alert("✅ Backend Connected!");
+    }
+}
+
+// Ab saare fetch requests me BACKEND_URL use hoga
+// Example: jahan fetch('/compress') tha, wahan ab `${BACKEND_URL}/compress` hoga.
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
